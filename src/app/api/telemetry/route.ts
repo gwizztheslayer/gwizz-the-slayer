@@ -1,6 +1,6 @@
 ﻿import { NextResponse } from 'next/server';
 
-export const dynamic = 'force-dynamic'; // Always fetch real-time logs
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
@@ -9,8 +9,9 @@ export async function GET() {
     });
     
     const data = await response.json();
-    // Filter to ensure we only display G-Wizz hub events, excluding broader label data
-    const filteredLogs = data.data.filter((log: any) => log.channel === "gwizz-hub");
+    
+    // Dynamically match your channel to your project name ("g-wizz-hub")
+    const filteredLogs = data.data.filter((log: any) => log.channel === process.env.LOGSNAG_PROJECT);
     
     return NextResponse.json(filteredLogs);
   } catch (error) {

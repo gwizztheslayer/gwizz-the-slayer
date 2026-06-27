@@ -8,6 +8,11 @@ import TheSyndicate from "@/components/TheSyndicate/TheSyndicate";
 import VaultMatrix from "@/components/VaultMatrix";
 import { inventory } from "@/lib/inventory";
 
+// API INJECTIONS
+import MarketOracle from "@/components/Oracle/MarketOracle";
+import TelemetryFeed from "@/components/Network/TelemetryFeed";
+import SyndicateGrid from "@/components/Live/SyndicateGrid";
+
 const Visuals = dynamic(() => import("@/components/Visuals/Visuals"), { loading: () => <div className="w-full max-w-6xl mx-auto min-h-[400px] border border-toxic/10 bg-black flex items-center justify-center font-mono text-xs text-toxic/40 animate-pulse">[ INITIATING VISUAL FEED... ]</div> });
 const Transmissions = dynamic(() => import("@/components/Transmissions/Transmissions"), { loading: () => <div className="w-full max-w-6xl mx-auto min-h-[400px] border border-toxic/10 bg-black flex items-center justify-center font-mono text-xs text-toxic/40 animate-pulse">[ ACCESSING THE VAULT... ]</div> });
 const LiveTransmissions = dynamic(() => import("@/components/LiveTransmissions/LiveTransmissions"));
@@ -85,19 +90,20 @@ export default function Home() {
         </div>
         <div className="hidden lg:flex items-center gap-6 text-[10px] font-bold tracking-[0.2em] uppercase">
           <a href="#home" className="hover:text-toxic transition-colors text-toxic">HOME</a>
-          <a href="#about" className="hover:text-toxic transition-colors">ABOUT</a>
-          <a href="#videos" className="hover:text-toxic transition-colors">VIDEOS</a>
           <a href="#music" className="hover:text-toxic transition-colors">DISCOGRAPHY</a>
           <a href="#lyrics" className="hover:text-toxic transition-colors">LYRICS</a>
-          <a href="#transmissions" className="hover:text-toxic transition-colors">THE VAULT</a>
           <a href="#arsenal" className="hover:text-toxic transition-colors">THE ARSENAL</a>
           <a href="#shows" className="hover:text-toxic transition-colors">SHOWS</a>
           <a href="#network" className="hover:text-toxic transition-colors">NETWORK</a>
-          <a href="#contact" className="hover:text-toxic transition-colors">CONTACT</a>
         </div>
       </nav>
 
-      <section id="home" className="relative flex flex-col items-center justify-center pt-32 pb-12 min-h-[70vh]">
+      {/* WEB3 MARKET TICKER */}
+      <div className="w-full pt-16 z-[900] relative">
+        <MarketOracle />
+      </div>
+
+      <section id="home" className="relative flex flex-col items-center justify-center pt-24 pb-12 min-h-[70vh]">
         <div className="relative w-full max-w-5xl mx-auto px-4 flex justify-center mb-12 z-10 pointer-events-none">
           <Image src="/logo.png" alt="G-Wizz, The Slayer" width={1024} height={300} priority sizes="(max-width: 1024px) 100vw, 1024px" className="object-contain drop-shadow-[0_0_30px_rgba(0,0,0,0.8)]" />
         </div>
@@ -136,10 +142,23 @@ export default function Home() {
       </div>
       
       <TheSyndicate />
+      
+      {/* GENIUS LYRICS SECTOR */}
       <LyricsSector />
+
+      {/* BANDSINTOWN SYNDICATE GRID */}
+      <div id="shows" className="w-full border-t border-toxic/20 bg-black pt-12 pb-12">
+        <SyndicateGrid />
+      </div>
 
       <section id="network" className="py-24 bg-black/80 border-y border-toxic/20 relative z-10 text-center">
         <div className="max-w-5xl mx-auto px-4">
+          
+          {/* LOGSNAG TELEMETRY FEED */}
+          <div className="mb-16 max-w-3xl mx-auto text-left">
+            <TelemetryFeed />
+          </div>
+
           <h2 className="text-3xl font-black text-white uppercase mb-12 tracking-[0.2em]">THE NETWORK</h2>
           <div className="flex flex-wrap justify-center gap-4">
             {[
