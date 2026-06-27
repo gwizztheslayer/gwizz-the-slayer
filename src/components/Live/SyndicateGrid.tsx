@@ -10,6 +10,10 @@ export default function SyndicateGrid() {
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) setShows(data);
+      })
+      .catch(err => {
+        // Silently catch network drops or ad-blocker rejections to prevent complete system crash
+        console.warn("[ SYNDICATE GRID ] Network offline or API blocked by client.", err);
       });
   }, []);
 

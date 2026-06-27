@@ -10,8 +10,8 @@ export async function GET() {
     
     const data = await response.json();
     
-    // Dynamically match your channel to your project name ("g-wizz-hub")
-    const filteredLogs = data.data.filter((log: any) => log.channel === process.env.LOGSNAG_PROJECT);
+    // Hardcoded to match the exact 'gwizz-hub' channel in your LogSnag Playground
+    const filteredLogs = data.data.filter((log: any) => log.channel === "gwizz-hub");
     
     return NextResponse.json(filteredLogs);
   } catch (error) {

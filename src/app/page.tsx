@@ -61,7 +61,7 @@ export default function Home() {
           "name": "G-Wizz, The Slayer - Taking Over Ft. Ace Mclein (music video)",
           "description": "Official music video for Taking Over by G-Wizz, The Slayer featuring Ace Mclein, utilizing 1934 public domain archive footage.",
           "thumbnailUrl": "https://gwizztheslayer.co.za/icon.png",
-          "uploadDate": "2026-06-19",
+          "uploadDate": "2026-06-19T12:00:00+02:00",
           "contentUrl": "https://drive.google.com/file/d/1T4g1HitxceZnGPcA35UfhFjeQ7VziAKg/preview"
         }
       },
