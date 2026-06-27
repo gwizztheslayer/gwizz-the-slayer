@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import Discography from "@/components/Discography/Discography";
 import TheSyndicate from "@/components/TheSyndicate/TheSyndicate";
 import VaultMatrix from "@/components/VaultMatrix";
+import { inventory } from "@/lib/inventory";
 
 const Visuals = dynamic(() => import("@/components/Visuals/Visuals"), { loading: () => <div className="w-full max-w-6xl mx-auto min-h-[400px] border border-toxic/10 bg-black flex items-center justify-center font-mono text-xs text-toxic/40 animate-pulse">[ INITIATING VISUAL FEED... ]</div> });
 const Transmissions = dynamic(() => import("@/components/Transmissions/Transmissions"), { loading: () => <div className="w-full max-w-6xl mx-auto min-h-[400px] border border-toxic/10 bg-black flex items-center justify-center font-mono text-xs text-toxic/40 animate-pulse">[ ACCESSING THE VAULT... ]</div> });
@@ -34,28 +35,43 @@ export const metadata: Metadata = {
 export default function Home() {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "MusicGroup",
-    "name": "G-Wizz, The Slayer",
-    "genre": ["Hip-Hop", "Rap", "Modern Trap"],
-    "image": "https://gwizztheslayer.co.za/images/slayer-photo.jpg",
-    "description": "Emerging from the Knysna underground, G-Wizz, The Slayer is an architect of urban-industrial modern trap music.",
-    "url": "https://gwizztheslayer.co.za",
-    "sameAs": [
-      "https://open.spotify.com/artist/1GM9nGfwFjiwZtgIWO3sh2",
-      "https://soundcloud.com/gwizztheslayer",
-      "https://audiomack.com/gwizztheslayer",
-      "https://www.youtube.com/@gwizztheslayer",
-      "https://instagram.com/gwizztheslayer",
-      "https://twitter.com/gwizz_theslayer"
-    ],
-    "subjectOf": {
-      "@type": "VideoObject",
-      "name": "G-Wizz, The Slayer - Taking Over Ft. Ace Mclein (music video)",
-      "description": "Official music video for Taking Over by G-Wizz, The Slayer featuring Ace Mclein, utilizing 1934 public domain archive footage.",
-      "thumbnailUrl": "https://gwizztheslayer.co.za/icon.png",
-      "uploadDate": "2026-06-19",
-      "contentUrl": "https://drive.google.com/file/d/1T4g1HitxceZnGPcA35UfhFjeQ7VziAKg/preview"
-    }
+    "@graph": [
+      {
+        "@type": "MusicGroup",
+        "name": "G-Wizz, The Slayer",
+        "genre": ["Hip-Hop", "Rap", "Modern Trap"],
+        "image": "https://gwizztheslayer.co.za/images/slayer-photo.jpg",
+        "description": "Emerging from the Knysna underground, G-Wizz, The Slayer is an architect of urban-industrial modern trap music.",
+        "url": "https://gwizztheslayer.co.za",
+        "sameAs": [
+          "https://open.spotify.com/artist/1GM9nGfwFjiwZtgIWO3sh2",
+          "https://soundcloud.com/gwizztheslayer",
+          "https://audiomack.com/gwizztheslayer",
+          "https://www.youtube.com/@gwizztheslayer",
+          "https://instagram.com/gwizztheslayer",
+          "https://twitter.com/gwizz_theslayer"
+        ],
+        "subjectOf": {
+          "@type": "VideoObject",
+          "name": "G-Wizz, The Slayer - Taking Over Ft. Ace Mclein (music video)",
+          "description": "Official music video for Taking Over by G-Wizz, The Slayer featuring Ace Mclein, utilizing 1934 public domain archive footage.",
+          "thumbnailUrl": "https://gwizztheslayer.co.za/icon.png",
+          "uploadDate": "2026-06-19",
+          "contentUrl": "https://drive.google.com/file/d/1T4g1HitxceZnGPcA35UfhFjeQ7VziAKg/preview"
+        }
+      },
+      ...inventory.map((item) => ({
+        "@type": item.type === "physical" ? "Product" : "DigitalDocument",
+        "name": item.name,
+        "image": `https://www.gwizztheslayer.co.za${item.image}`,
+        "offers": {
+          "@type": "Offer",
+          "price": item.priceUSD || "0.00",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        }
+      }))
+    ]
   };
 
   return (
