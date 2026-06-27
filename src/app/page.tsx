@@ -10,7 +10,6 @@ import VaultMatrix from "@/components/VaultMatrix";
 const Visuals = dynamic(() => import("@/components/Visuals/Visuals"), { loading: () => <div className="w-full max-w-6xl mx-auto min-h-[400px] border border-toxic/10 bg-black flex items-center justify-center font-mono text-xs text-toxic/40 animate-pulse">[ INITIATING VISUAL FEED... ]</div> });
 const Transmissions = dynamic(() => import("@/components/Transmissions/Transmissions"), { loading: () => <div className="w-full max-w-6xl mx-auto min-h-[400px] border border-toxic/10 bg-black flex items-center justify-center font-mono text-xs text-toxic/40 animate-pulse">[ ACCESSING THE VAULT... ]</div> });
 const LiveTransmissions = dynamic(() => import("@/components/LiveTransmissions/LiveTransmissions"));
-// Updated to target the correct Arsenal folder
 const Arsenal = dynamic(() => import("@/components/Arsenal/Arsenal"), { loading: () => <div className="w-full max-w-6xl mx-auto min-h-[400px] border border-toxic/10 bg-black flex items-center justify-center font-mono text-xs text-toxic/40 animate-pulse">[ ACCESSING WEAPONRY SYSTEM... ]</div> });
 const About = dynamic(() => import("@/components/About/About"));
 const PressKit = dynamic(() => import("@/components/PressKit/PressKit"), { loading: () => <div className="w-full max-w-6xl mx-auto min-h-[400px] border border-toxic/10 bg-black flex items-center justify-center font-mono text-xs text-toxic/40 animate-pulse">[ LOADING PRESS TERMINAL... ]</div> });
@@ -106,7 +105,6 @@ export default function Home() {
 
       <Discography />
 
-      {/* DYNAMIC API AUDIO ENGINE */}
       <section className="relative z-10 w-full max-w-7xl mx-auto px-4 mb-24">
         <VaultMatrix />
       </section>
@@ -117,7 +115,6 @@ export default function Home() {
       <About />
       <PressKit />
       
-      {/* FULLY RESTORED ARSENAL (PHYSICAL + DIGITAL + PAYMENT GATEWAYS) */}
       <div id="arsenal">
         <Arsenal />
       </div>
