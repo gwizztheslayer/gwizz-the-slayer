@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gwizz-the-slayer.vercel.app/sitemap.xml

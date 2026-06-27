@@ -1,0 +1,9 @@
+﻿node_modules
+.next
+.git
+.cache
+dist
+*.mp4
+*.wav
+*.psd
+next-swc.win32-x64-msvc.node
