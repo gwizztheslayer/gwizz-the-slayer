@@ -1,4 +1,5 @@
-﻿import { NextResponse } from "next/server";
+export const revalidate = 3600; // Cache API for 1 hour to prevent rate-limiting
+import { NextResponse } from "next/server";
 import { fetchSoundCloudStreams } from "@/lib/api/soundcloud";
 import { fetchSpotifyStreams } from "@/lib/api/spotify";
 import { fetchYouTubeStreams } from "@/lib/api/youtube";
@@ -29,3 +30,4 @@ export async function GET() {
     return NextResponse.json({ error: "Failed to resolve stream connections." }, { status: 500 });
   }
 }
+
