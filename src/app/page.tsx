@@ -23,6 +23,10 @@ const ContactForm = dynamic(() => import("@/components/ContactForm/ContactForm")
 const Support = dynamic(() => import("@/components/Support/Support"));
 const LyricsSector = dynamic(() => import("@/components/LyricsSector/LyricsSector"), { loading: () => <div className="w-full max-w-6xl mx-auto min-h-[400px] border border-toxic/10 bg-black flex items-center justify-center font-mono text-xs text-toxic/40 animate-pulse">[ INITIATING LYRICS ENGINE... ]</div> });
 
+// LIVE NETWORK NODES (NEW INJECTIONS)
+const VaultStreamTelemetry = dynamic(() => import("@/components/Network/VaultStreamTelemetry"), { ssr: false });
+const DiscordSyndicate = dynamic(() => import("@/components/Network/DiscordSyndicate"), { ssr: false });
+
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -154,6 +158,12 @@ export default function Home() {
       <section id="network" className="py-24 bg-black/80 border-y border-toxic/20 relative z-10 text-center">
         <div className="max-w-5xl mx-auto px-4">
           
+          {/* SECURE NETWORK NODES (DISCORD + SPOTIFY) */}
+          <div className="mb-12 max-w-3xl mx-auto flex flex-col md:flex-row justify-center gap-6 text-left">
+            <VaultStreamTelemetry />
+            <DiscordSyndicate />
+          </div>
+
           {/* LOGSNAG TELEMETRY FEED */}
           <div className="mb-16 max-w-3xl mx-auto text-left">
             <TelemetryFeed />
