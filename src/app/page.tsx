@@ -24,8 +24,8 @@ const Support = dynamic(() => import("@/components/Support/Support"));
 const LyricsSector = dynamic(() => import("@/components/LyricsSector/LyricsSector"), { loading: () => <div className="w-full max-w-6xl mx-auto min-h-[400px] border border-toxic/10 bg-black flex items-center justify-center font-mono text-xs text-toxic/40 animate-pulse">[ INITIATING LYRICS ENGINE... ]</div> });
 
 // LIVE NETWORK NODES (NEW INJECTIONS)
-const VaultStreamTelemetry = dynamic(() => import("@/components/Network/VaultStreamTelemetry"), { ssr: false });
-const DiscordSyndicate = dynamic(() => import("@/components/Network/DiscordSyndicate"), { ssr: false });
+import VaultStreamTelemetry from "@/components/Network/VaultStreamTelemetry";
+import DiscordSyndicate from "@/components/Network/DiscordSyndicate";
 
 import { Metadata } from 'next';
 
@@ -206,3 +206,4 @@ export default function Home() {
     </main>
   );
 }
+
